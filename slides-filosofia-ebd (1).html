@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filosofia & Materialismo — EBD 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:   #0d1c2b;
+  --navy2:  #132333;
+  --navy3:  #1a2e3f;
+  --line:   #243d52;
+  --muted:  #7a98ae;
+  --ghost:  #4a6a82;
+  --beige:  #f0e8d4;
+  --beige2: #e5dcc4;
+  --beige3: #c9bfa0;
+  --white:  #faf6ee;
+  --q-bg:   #0a1a27;
+  --q-line: #1a3a52;
+  --r: 12px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--beige);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1.25rem 5rem;
+}
+
+.shell { width: 100%; max-width: 620px; }
+
+/* ── Site header ── */
+.site-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.site-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ghost);
+  margin-bottom: .6rem;
+}
+.site-title {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+/* ── Progress ── */
+.progress { height: 1px; background: var(--line); margin-bottom: 1.5rem; }
+.progress-fill { height: 100%; background: var(--beige3); transition: width .35s ease; }
+
+/* ── Dot nav ── */
+.dot-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: var(--line); border: none; cursor: pointer; transition: background .15s; padding: 0; flex-shrink: 0; }
+.dot.active { background: var(--beige3); }
+
+/* ── Slides ── */
+.slide { display: none; }
+.slide.active { display: block; animation: fadeUp .2s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Card ── */
+.card {
+  background: var(--navy2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.card-bar { height: 3px; width: 100%; }
+.bar-phil  { background: #7a7abf; }
+.bar-mat   { background: #a07a4a; }
+.bar-bible { background: #4a8aaf; }
+.card-body { padding: 1.75rem 1.75rem 2rem; }
+
+/* ── Card meta ── */
+.card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.card-num { font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--ghost); }
+.tag { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; border: 1px solid; }
+.tag-phil  { color: #9898d4; border-color: #9898d4; }
+.tag-mat   { color: #c4a06a; border-color: #c4a06a; }
+.tag-bible { color: #6aaace; border-color: #6aaace; }
+
+/* ── Typography ── */
+.slide-title { font-size: 21px; font-weight: 300; color: var(--white); line-height: 1.3; margin-bottom: .35rem; }
+.slide-sub { font-size: 12px; font-weight: 400; color: var(--ghost); margin-bottom: 1.5rem; line-height: 1.5; }
+.body { font-size: 14px; font-weight: 300; color: var(--beige2); line-height: 1.85; }
+.body + .body { margin-top: .85rem; }
+em { color: var(--beige); font-style: italic; font-weight: 400; }
+
+/* ── Divider ── */
+.divider { height: 1px; background: var(--line); margin: 1.4rem 0; }
+
+/* ── Section label ── */
+.section-label { font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ghost); margin-bottom: .75rem; }
+
+/* ── Highlight box ── */
+.hbox { background: var(--navy3); border-left: 2px solid var(--ghost); border-radius: 0 6px 6px 0; padding: 1rem 1.1rem; margin: 1.25rem 0; }
+.hbox .body { font-size: 13px; }
+
+/* ── Compare ── */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 1.25rem 0; }
+@media (max-width: 400px) { .compare { grid-template-columns: 1fr; } }
+.col { background: var(--navy3); border: 1px solid var(--line); border-radius: 8px; padding: .9rem 1rem; }
+.col-title { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--ghost); margin-bottom: .5rem; }
+.col p { font-size: 13px; font-weight: 300; color: var(--beige2); line-height: 1.65; }
+
+/* ── Verse ── */
+.verse { border-left: 2px solid var(--line); padding: .65rem 0 .65rem 1rem; margin: 1.25rem 0; font-size: 13.5px; font-style: italic; font-weight: 300; color: var(--muted); line-height: 1.7; }
+.ref { display: block; font-style: normal; font-size: 9px; font-weight: 600; letter-spacing: .08em; color: var(--ghost); margin-top: 4px; text-transform: uppercase; }
+
+/* ── List ── */
+.items { list-style: none; margin: 1rem 0; }
+.items li { display: flex; gap: .9rem; padding: .8rem 0; border-bottom: 1px solid var(--line); font-size: 13.5px; font-weight: 300; color: var(--beige2); line-height: 1.7; }
+.items li:last-child { border-bottom: none; }
+.n { font-size: 9px; font-weight: 600; letter-spacing: .08em; color: var(--ghost); min-width: 20px; padding-top: 3px; flex-shrink: 0; text-transform: uppercase; }
+
+/* ── Dialectic ── */
+.dialectic { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 6px; align-items: center; margin: 1.25rem 0; }
+@media (max-width: 440px) { .dialectic { grid-template-columns: 1fr; } .dialectic-arrow { display: none; } }
+.d-box { background: var(--navy3); border: 1px solid var(--line); border-radius: 8px; padding: .85rem .9rem; }
+.d-box.hl { border-color: var(--beige3); }
+.d-label { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ghost); margin-bottom: 4px; }
+.d-box.hl .d-label { color: var(--beige3); }
+.d-text { font-size: 12px; font-weight: 300; color: var(--beige2); line-height: 1.55; }
+.dialectic-arrow { color: var(--ghost); font-size: 14px; text-align: center; }
+
+/* ── Tag items ── */
+.tag-items { display: flex; flex-direction: column; gap: 8px; margin: 1.1rem 0; }
+.tag-item { display: flex; align-items: flex-start; gap: 10px; padding: .75rem .9rem; background: var(--navy3); border: 1px solid var(--line); border-radius: 8px; }
+.tag-item-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ghost); flex-shrink: 0; margin-top: 6px; }
+.tag-item-text { font-size: 13px; font-weight: 300; color: var(--beige2); line-height: 1.6; }
+.tag-item-text strong { color: var(--beige); font-weight: 500; }
+
+/* ══════════════════════════════════════
+   QUESTION BLOCK — the key piece
+══════════════════════════════════════ */
+.question-block {
+  background: var(--q-bg);
+  border: 1px solid var(--q-line);
+  border-radius: 10px;
+  padding: 1.25rem 1.3rem;
+  margin-top: 1.6rem;
+  position: relative;
+}
+.question-block::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 1.5rem;
+  width: 2rem; height: 2px;
+  background: var(--q-bg);
+}
+.q-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ghost);
+  margin-bottom: .85rem;
+}
+.q-icon {
+  width: 16px; height: 16px;
+  border: 1px solid var(--ghost);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--ghost);
+  flex-shrink: 0;
+  font-style: italic;
+  font-weight: 500;
+}
+.question-text {
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--beige);
+  line-height: 1.7;
+}
+
+/* ── Navigation ── */
+.nav { display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; gap: 8px; }
+.btn { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .05em; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 9px 18px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: border-color .15s, color .15s; }
+.btn:hover { border-color: var(--ghost); color: var(--beige); }
+.btn:active { transform: scale(.98); }
+.btn:disabled { opacity: .2; cursor: default; }
+.nav-c { font-size: 11px; font-weight: 400; color: var(--ghost); letter-spacing: .04em; }
+.kbd { text-align: center; font-size: 10px; color: var(--line); margin-top: .75rem; letter-spacing: .04em; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="site-header">
+    <div class="site-label">EBD · 2º Trimestre 2026</div>
+    <div class="site-title">A falácia do<br>Materialismo Histórico</div>
+  </div>
+
+  <div class="progress"><div class="progress-fill" id="prog" style="width:11.11%"></div></div>
+  <div class="dot-nav" id="dots"></div>
+  <div id="sc">
+
+    <!-- 1 -->
+    <div class="slide active">
+      <div class="card">
+        <div class="card-bar bar-phil"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">01 / 09</span><span class="tag tag-phil">Introdução</span></div>
+          <div class="slide-title">A falácia do materialismo histórico</div>
+          <div class="slide-sub">O que estudaremos nessa lição</div>
+          <div class="body">Antes de entrarmos no tema principal, precisamos entender dois conceitos-base:</div>
+          <div class="divider"></div>
+          <div class="section-label">O que é uma falácia?</div>
+          <div class="hbox">
+            <div class="body">É uma forma de raciocínio <em>enganoso</em> que tem a intenção de parecer válido. Parece lógico, mas esconde uma falha no argumento.</div>
+          </div>
+          <div class="divider"></div>
+          <div class="section-label">O que é filosofia?</div>
+          <div class="body">Filosofia é o estudo fundamental sobre a existência, o conhecimento, os valores, a razão, a mente e a linguagem.</div>
+          <div class="body">Ela busca compreender questões profundas com <em>raciocínio crítico, lógico e conceitual</em> — perguntando não só "o quê", mas "por quê" e "como sabemos".</div>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">Se a filosofia questiona tudo com a razão, o que acontece com a fé quando ela encontra um argumento que não consegue responder? A sua crença em Deus sobreviveria a uma falha que você não soubesse explicar?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-phil"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">02 / 09</span><span class="tag tag-phil">Filosofia</span></div>
+          <div class="slide-title">Os principais aspectos da filosofia</div>
+          <div class="slide-sub">As áreas que compõem o pensamento filosófico</div>
+          <ul class="items">
+            <li><span class="n">Meta-<br>física</span><div><em>"Meta" = além.</em> Investiga a natureza fundamental da realidade, explorando conceitos como ser, existência, tempo, espaço e causalidade. Pergunta: <em>o que existe de fato?</em></div></li>
+            <li><span class="n">Episte-<br>mologia</span><div>Dedica-se ao estudo do <em>conhecimento.</em> Aborda: o que é conhecimento? Como adquirimos? Quais são seus limites? Como sabemos que algo é verdade?</div></li>
+            <li><span class="n">Ética</span><div>Estuda o que é certo, errado, justo e injusto. Pergunta: como devemos agir e por quê?</div></li>
+            <li><span class="n">Lógica</span><div>Analisa a estrutura dos argumentos válidos. Base do pensamento racional e científico.</div></li>
+            <li><span class="n">Estética</span><div>Reflete sobre a natureza do belo, da arte e da experiência sensível.</div></li>
+          </ul>
+          <div class="hbox">
+            <div class="body">O Materialismo Histórico se apoia em escolhas filosóficas muito específicas — especialmente sobre o que é <em>real</em> e de onde vem o <em>conhecimento.</em></div>
+          </div>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">A epistemologia pergunta: como você sabe que algo é verdade? Como você sabe que Deus existe — não o que te ensinaram, não o que sente, mas como você <em>sabe?</em> Existe diferença entre fé e conhecimento, ou uma é uma forma da outra?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-mat"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">03 / 09</span><span class="tag tag-mat">Materialismo Histórico</span></div>
+          <div class="slide-title">O que é o Materialismo Histórico?</div>
+          <div class="slide-sub">A teoria de Marx e Engels sobre a história humana</div>
+          <div class="body">É uma teoria que busca analisar a história humana através de uma perspectiva materialista. Foca nas <em>condições materiais de existência</em> — especialmente nas relações de produção — como os principais motores das mudanças sociais.</div>
+          <div class="divider"></div>
+          <div class="section-label">Contexto de surgimento</div>
+          <div class="body">A teoria surgiu no século XIX. A Revolução Industrial havia impulsionado o capitalismo, gerando crescimento econômico, mas também <em>aprofundando as desigualdades</em> e criando uma nova classe de trabalhadores explorados — o proletariado.</div>
+          <div class="divider"></div>
+          <div class="section-label">A ideia central</div>
+          <ul class="items">
+            <li><span class="n">→</span><div>O <em>trabalho</em> é o que diferencia os homens dos animais e dá base às relações sociais</div></li>
+            <li><span class="n">→</span><div>Os <em>meios de produção</em> (fábricas, máquinas, terrenos) determinam como a sociedade se organiza</div></li>
+            <li><span class="n">→</span><div>As mudanças sociais são fruto da conquista material e da modificação nos <em>modos de produção</em></div></li>
+            <li><span class="n">→</span><div>As relações entre indivíduos são entendidas pela <em>troca</em> — o que cada um pode ofertar como força produtiva</div></li>
+          </ul>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">Se as condições materiais moldam o pensamento humano, o quanto da sua fé foi formado pelo país onde nasceu, pela família que teve, pela classe social em que cresceu — e não por uma escolha genuinamente sua?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-mat"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">04 / 09</span><span class="tag tag-mat">Marxismo</span></div>
+          <div class="slide-title">A sociedade segundo o marxismo</div>
+          <div class="slide-sub">Como Marx e Engels enxergavam as classes sociais</div>
+          <div class="compare">
+            <div class="col"><div class="col-title">Burguesia</div><p>Detentores dos meios de produção — fábricas, máquinas e capital. Querem <em>conservar o poder</em> e obter mais lucro.</p></div>
+            <div class="col"><div class="col-title">Proletariado</div><p>Recebem salário por sua força de trabalho. Precisam <em>vender a mão de obra</em> para sobreviver.</p></div>
+          </div>
+          <div class="body">Os burgueses exploram ao máximo os empregados — pagando baixos salários e oferecendo péssimas condições de trabalho. Insatisfeito, o proletariado se revolta e luta contra os burgueses.</div>
+          <div class="hbox" style="margin-top:1.25rem">
+            <div class="body"><em>O que move a história de uma sociedade são as lutas entre as diferentes classes sociais.</em> Essa luta levaria, segundo Marx, ao fim da divisão de classes e a uma transformação revolucionária da ordem social.</div>
+          </div>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">Se a Igreja historicamente esteve aliada ao poder econômico dominante — abençoando reis, legitimando guerras, sendo financiada por latifundiários — ela pregava o Evangelho ou servia aos interesses de uma classe? E hoje, isso ainda acontece?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-mat"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">05 / 09</span><span class="tag tag-mat">Materialismo Dialético</span></div>
+          <div class="slide-title">Materialismo Dialético</div>
+          <div class="slide-sub">O movimento entre opostos como motor da mudança social</div>
+          <div class="body">Marx usa o conceito de <em>dialética</em> — movimento entre opostos — para explicar as mudanças sociais. As mudanças surgem necessariamente do <em>embate entre forças sociais distintas.</em></div>
+          <div class="divider"></div>
+          <div class="section-label">Tese · Antítese · Síntese</div>
+          <div class="dialectic">
+            <div class="d-box">
+              <div class="d-label">Tese</div>
+              <div class="d-text">Afirmação inicial. Situação existente. Ex: o feudalismo como sistema dominante.</div>
+            </div>
+            <div class="dialectic-arrow">→</div>
+            <div class="d-box">
+              <div class="d-label">Antítese</div>
+              <div class="d-text">A contradição. Força oposta em conflito com a tese. Ex: o capitalismo emergente.</div>
+            </div>
+            <div class="dialectic-arrow">→</div>
+            <div class="d-box hl">
+              <div class="d-label">Síntese</div>
+              <div class="d-text">Resultado do conflito. Nova realidade que supera os dois. Ex: o capitalismo industrial.</div>
+            </div>
+          </div>
+          <div class="hbox">
+            <div class="body">Para Marx, toda a história humana segue esse movimento. <em>O conflito não é acidental — é o mecanismo da história.</em></div>
+          </div>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">A própria teologia cristã foi moldada por conflitos — a Reforma, as perseguições, os concílios. Se o que a Igreja acredita hoje foi formado por embates históricos, como você distingue o que é <em>revelação de Deus</em> do que é simplesmente a síntese vencedora de um conflito humano?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-bible"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">06 / 09</span><span class="tag tag-bible">EBD · Lição 2</span></div>
+          <div class="slide-title">A luta de classes na visão marxista</div>
+          <div class="slide-sub">E o que a Bíblia tem a dizer sobre isso</div>
+          <div class="body">Para o marxismo, a luta entre opressores e oprimidos é o <em>motor da história.</em> Toda injustiça teria origem nas estruturas econômicas — e a solução estaria em mudar essas estruturas.</div>
+          <div class="compare" style="margin-top:1.25rem">
+            <div class="col"><div class="col-title">Marxismo</div><p>A luta é material: burguesia vs. proletariado. Mude as estruturas e o problema estará resolvido.</p></div>
+            <div class="col"><div class="col-title">Bíblia</div><p>A nossa luta é contra os principados, contra as potestades... nos lugares celestiais. (Ef 6.12)</p></div>
+          </div>
+          <div class="verse">"A raiz de todos os males é o amor ao dinheiro" — mas a raiz mais profunda ainda é o pecado no coração humano.<span class="ref">1 Timóteo 6.10 · 1 João 5.17</span></div>
+          <div class="hbox">
+            <div class="body">O verdadeiro problema do mundo não é econômico — é espiritual. <em>Sem novo nascimento, não há nova sociedade.</em> A transformação começa no coração.</div>
+          </div>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">Se o problema é espiritual e não estrutural, por que Deus permite que crianças morram de fome em sistemas econômicos injustos antes que possam ser "transformadas pelo Evangelho"? A transformação do coração é suficiente quando o corpo está com fome?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-bible"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">07 / 09</span><span class="tag tag-bible">EBD · Lição 2</span></div>
+          <div class="slide-title">Materialismo Dialético e a providência de Deus</div>
+          <div class="slide-sub">Os pontos-chave e a resposta cristã</div>
+          <div class="section-label">O que o materialismo dialético afirma</div>
+          <ul class="items">
+            <li><span class="n">①</span><div>As mudanças sociais têm origem em <em>contradições internas</em> nos sistemas materiais</div></li>
+            <li><span class="n">②</span><div>Rejeita qualquer <em>intervenção divina</em> ou plano superior na direção da história</div></li>
+            <li><span class="n">③</span><div>Substitui princípios morais imutáveis por <em>relativismo histórico</em> — qualquer ação pode ser justificada em nome da "evolução social"</div></li>
+          </ul>
+          <div class="divider"></div>
+          <div class="section-label">A perspectiva cristã</div>
+          <ul class="items">
+            <li><span class="n">①</span><div>A história é dirigida por um <em>Deus soberano</em> que estabelece limites morais claros</div></li>
+            <li><span class="n">②</span><div>Deus julga as ações humanas com <em>justiça</em> (Sl 75.6,7)</div></li>
+            <li><span class="n">③</span><div>A doutrina bíblica da providência afirma que Deus <em>dirige a história</em> e sustenta todas as coisas</div></li>
+          </ul>
+          <div class="verse">"Em Ele todas as coisas subsistem." / "Sustentando todas as coisas pela palavra do seu poder."<span class="ref">Colossenses 1.17 · Hebreus 1.3</span></div>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">Se Deus dirige soberanamente a história, Ele também dirigiu o Holocausto, a escravidão e o genocídio de povos indígenas? Onde está a linha entre <em>providência divina</em> e cumplicidade? E o que isso diz sobre o Deus em quem você crê?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-bible"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">08 / 09</span><span class="tag tag-bible">EBD · Lição 2</span></div>
+          <div class="slide-title">"A religião é o ópio do povo"</div>
+          <div class="slide-sub">A base ateísta declarada do Materialismo Histórico</div>
+          <div class="body">O Materialismo Histórico se fundamenta no ateísmo. Marx afirmou que a religião é uma ilusão criada para manter as classes oprimidas conformadas com sua situação.</div>
+          <div class="tag-items">
+            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Religião como ilusão</strong> — criada para subjugar e satisfazer os pobres, impedindo-os de lutar por seus direitos</div></div>
+            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Deus como invenção humana</strong> — a divindade é interpretada como um constructo cultural e psicológico</div></div>
+            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Fé como obstáculo</strong> — a fé cristã é considerada um empecilho ao progresso e à transformação social</div></div>
+            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Hostilidade à Bíblia</strong> — rejeita o papel de Deus como Criador e Senhor da história</div></div>
+          </div>
+          <div class="verse">"Lembrai-vos das coisas passadas... porque eu sou Deus, e não há outro Deus, e nada há semelhante a mim."<span class="ref">Isaías 46.9,10</span></div>
+          <div class="hbox">
+            <div class="body">Onde o marxismo governou, igrejas foram fechadas, pastores presos, a Bíblia proibida. <em>Nossa esperança não está em revoluções humanas, mas na cruz de Cristo.</em></div>
+          </div>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">Marx disse que a religião consola os oprimidos para que suportem a injustiça. Você já usou a frase "Deus tem um propósito" para aceitar uma situação injusta que poderia ter sido combatida? Em que momento a fé vira resignação — e resignação vira cumplicidade com o mal?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="slide">
+      <div class="card">
+        <div class="card-bar bar-bible"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">09 / 09</span><span class="tag tag-bible">EBD · Conclusão</span></div>
+          <div class="slide-title">A utopia que falhou e a esperança que permanece</div>
+          <div class="slide-sub">Provérbios 30.7–9 · 1 Timóteo 6.6–9</div>
+          <div class="body">O Materialismo Histórico prometeu uma sociedade sem classes, sem desigualdade, sem injustiça. O que aconteceu, na prática, foram regimes autoritários, concentração de poder e nova opressão.</div>
+          <div class="hbox" style="margin:1.25rem 0">
+            <div class="body">O problema central: o marxismo ignorou o <em>pecado no coração humano.</em> Sem lidar com a natureza corrompida, qualquer sistema — por mais bem planejado — reproduz o ciclo de poder e opressão.</div>
+          </div>
+          <div class="verse">"Não me dês nem a pobreza nem a riqueza; mantém-me do pão da minha porção acostumada."<span class="ref">Provérbios 30.8</span></div>
+          <div class="verse">"É grande ganho a piedade com contentamento. Porque nada trouxemos para este mundo e nada podemos levar dele."<span class="ref">1 Timóteo 6.6,7</span></div>
+          <div class="divider"></div>
+          <div class="section-label">A resposta bíblica</div>
+          <ul class="items">
+            <li><span class="n">→</span><div>O amor ao próximo e a solidariedade nascida da <em>regeneração</em> — não da revolução violenta (Mt 5.44)</div></li>
+            <li><span class="n">→</span><div>A Igreja como sal da terra e luz do mundo — maior agente de transformação genuína (Mt 5.13,14)</div></li>
+            <li><span class="n">→</span><div>O poder da Igreja está na <em>cruz de Cristo</em>, que salva, transforma e liberta com esperança duradoura</div></li>
+          </ul>
+
+          <div class="question-block">
+            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
+            <div class="question-text">Se o marxismo falhou por ignorar o pecado humano, o que impede a Igreja — que conhece o pecado — de falhar pelo mesmo motivo? Quando foi a última vez que você viu a fé cristã transformar genuinamente uma estrutura injusta, e não apenas consolar quem sofre dentro dela?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <button class="btn" id="bp" disabled onclick="go(-1)">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8 2L3 6.5L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Anterior
+    </button>
+    <span class="nav-c" id="nc">1 / 9</span>
+    <button class="btn" id="bn" onclick="go(1)">
+      Próximo
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M5 2L10 6.5L5 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <p class="kbd">← → teclado · swipe mobile</p>
+
+</div>
+<script>
+var cur=0,sl=document.querySelectorAll('.slide'),n=sl.length,de=document.getElementById('dots');
+for(var i=0;i<n;i++){var d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label','Card '+(i+1));(function(x){d.onclick=function(){go2(x)};})(i);de.appendChild(d);}
+function go2(i){
+  sl[cur].classList.remove('active');de.children[cur].classList.remove('active');
+  cur=i;
+  sl[cur].classList.add('active');de.children[cur].classList.add('active');
+  document.getElementById('nc').textContent=(cur+1)+' / '+n;
+  document.getElementById('bp').disabled=cur===0;
+  document.getElementById('bn').disabled=cur===n-1;
+  document.getElementById('prog').style.width=Math.round(((cur+1)/n)*100)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){go2(Math.min(Math.max(cur+d,0),n-1));}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+});
+var tx=0;
+document.addEventListener('touchstart',function(e){tx=e.changedTouches[0].screenX;},{passive:true});
+document.addEventListener('touchend',function(e){var dx=e.changedTouches[0].screenX-tx;if(Math.abs(dx)>50)go(dx<0?1:-1);},{passive:true});
+</script>
+</body>
+</html>
