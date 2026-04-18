@@ -1,520 +1,631 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Filosofia & Materialismo — EBD 2026</title>
+<meta charset="utf-8">
+<title>Plano ENEM · 4 Meses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --paper:#f6f1e8;
+    --paper-2:#efe8dc;
+    --ink:#1a1916;
+    --ink-soft:#4a473f;
+    --ink-faint:#8a8578;
+    --rule:#d8cfbf;
+    --rule-soft:#e6dfd0;
+    --ocre: oklch(0.58 0.12 55);      /* terracota */
+    --olive: oklch(0.52 0.08 125);    /* verde oliva */
+    --berry: oklch(0.46 0.11 20);     /* vinho */
+    --sky:   oklch(0.55 0.08 235);    /* azul poeira */
+    --sun:   oklch(0.68 0.11 85);     /* mostarda */
+    --plum:  oklch(0.48 0.09 320);    /* ameixa */
+  }
 
-:root {
-  --navy:   #0d1c2b;
-  --navy2:  #132333;
-  --navy3:  #1a2e3f;
-  --line:   #243d52;
-  --muted:  #7a98ae;
-  --ghost:  #4a6a82;
-  --beige:  #f0e8d4;
-  --beige2: #e5dcc4;
-  --beige3: #c9bfa0;
-  --white:  #faf6ee;
-  --q-bg:   #0a1a27;
-  --q-line: #1a3a52;
-  --r: 12px;
-}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  body{
+    background-image:
+      radial-gradient(1200px 800px at 10% -10%, oklch(0.95 0.02 80) 0%, transparent 60%),
+      radial-gradient(900px 700px at 110% 10%, oklch(0.94 0.03 55) 0%, transparent 55%);
+  }
 
-html { scroll-behavior: smooth; }
+  .page{max-width:1180px;margin:0 auto;padding:64px 56px 120px;}
 
-body {
-  background: var(--navy);
-  color: var(--beige);
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 2.5rem 1.25rem 5rem;
-}
+  /* ───── MASTHEAD ───── */
+  .masthead{
+    border-top:3px double var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding:18px 0;
+    display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .masthead .vol{font-weight:500;color:var(--ink)}
+  .masthead .dot{width:6px;height:6px;background:var(--ocre);border-radius:50%;display:inline-block;vertical-align:middle;margin:0 8px}
 
-.shell { width: 100%; max-width: 620px; }
+  /* ───── HERO ───── */
+  .hero{padding:80px 0 60px;display:grid;grid-template-columns:1.3fr .9fr;gap:56px;align-items:end;border-bottom:1px solid var(--rule);}
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-variation-settings:"opsz" 144;
+    font-size:clamp(68px,9.5vw,132px);
+    line-height:.92;letter-spacing:-.02em;
+    color:var(--ink);
+  }
+  .hero h1 em{font-style:italic;color:var(--ocre);font-weight:300}
+  .hero h1 .amp{font-style:italic;font-weight:300;color:var(--berry)}
+  .hero .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ocre);margin-bottom:24px}
+  .hero .lede{font-family:'Fraunces',serif;font-size:20px;line-height:1.45;color:var(--ink-soft);font-weight:300;max-width:38ch}
+  .hero .lede strong{color:var(--ink);font-weight:500;font-style:italic}
+  .hero .meta{display:flex;gap:28px;margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint)}
+  .hero .meta b{display:block;color:var(--ink);font-size:22px;font-family:'Fraunces',serif;font-weight:400;letter-spacing:0;text-transform:none;margin-top:4px}
 
-/* ── Site header ── */
-.site-header {
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--line);
-}
-.site-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ghost);
-  margin-bottom: .6rem;
-}
-.site-title {
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.3;
-}
+  /* ───── MONTH NAV ───── */
+  .month-nav{
+    position:sticky;top:0;z-index:10;
+    background:var(--paper);
+    border-bottom:1px solid var(--ink);
+    margin:48px -56px 0;
+    padding:14px 56px;
+    display:flex;align-items:center;gap:6px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .month-nav .label{color:var(--ink-faint);margin-right:14px}
+  .month-nav button{
+    background:transparent;border:1px solid transparent;color:var(--ink-soft);
+    padding:8px 14px;cursor:pointer;font:inherit;text-transform:inherit;letter-spacing:inherit;
+    border-radius:999px;transition:all .15s;
+  }
+  .month-nav button:hover{color:var(--ink);background:var(--paper-2)}
+  .month-nav button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .month-nav .spacer{flex:1}
+  .month-nav .date{color:var(--ink-faint)}
 
-/* ── Progress ── */
-.progress { height: 1px; background: var(--line); margin-bottom: 1.5rem; }
-.progress-fill { height: 100%; background: var(--beige3); transition: width .35s ease; }
+  /* ───── MONTH SECTION ───── */
+  .month{padding:64px 0 32px;border-bottom:1px solid var(--rule);display:none}
+  .month.active{display:block}
+  .month-head{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:end;margin-bottom:48px}
+  .month-num{
+    font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+    font-size:140px;line-height:.85;color:var(--ocre);
+    font-variation-settings:"opsz" 144;
+  }
+  .month-title h2{
+    font-family:'Fraunces',serif;font-weight:400;font-size:56px;line-height:1;letter-spacing:-.015em;
+    font-variation-settings:"opsz" 144;
+  }
+  .month-title .sub{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:20px;color:var(--ink-soft);margin-top:10px}
+  .month-title .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ocre);margin-bottom:14px;border:1px solid var(--ocre);padding:4px 10px;border-radius:999px}
+  .month-arc{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);text-align:right;max-width:240px;line-height:1.7;
+  }
+  .month-arc b{color:var(--ink);display:block;font-family:'Fraunces',serif;font-size:16px;letter-spacing:0;text-transform:none;font-style:italic;font-weight:400;margin-bottom:4px}
 
-/* ── Dot nav ── */
-.dot-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 1.75rem; }
-.dot { width: 5px; height: 5px; border-radius: 50%; background: var(--line); border: none; cursor: pointer; transition: background .15s; padding: 0; flex-shrink: 0; }
-.dot.active { background: var(--beige3); }
+  /* ───── WEEK GRID ───── */
+  .weeks{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .week{background:var(--paper);padding:32px 32px 36px;position:relative}
+  .week .wk-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:16px;margin-bottom:22px}
+  .week .wk-num{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:baseline;gap:10px}
+  .week .wk-num b{font-family:'Fraunces',serif;font-style:normal;font-size:34px;letter-spacing:-.01em;text-transform:none;color:var(--ink);font-weight:300;font-variation-settings:"opsz" 144;line-height:1}
+  .week .wk-title{display:none}
 
-/* ── Slides ── */
-.slide { display: none; }
-.slide.active { display: block; animation: fadeUp .2s ease; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .subjects{display:flex;flex-direction:column;gap:14px}
+  .subj{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:start;padding:10px 0;border-bottom:1px solid var(--rule-soft)}
+  .subj:last-child{border-bottom:none}
+  .subj .s-name{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-soft);padding-top:4px;
+  }
 
-/* ── Card ── */
-.card {
-  background: var(--navy2);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  overflow: hidden;
-}
-.card-bar { height: 3px; width: 100%; }
-.bar-phil  { background: #7a7abf; }
-.bar-mat   { background: #a07a4a; }
-.bar-bible { background: #4a8aaf; }
-.card-body { padding: 1.75rem 1.75rem 2rem; }
+  .subj ul{list-style:none;display:flex;flex-wrap:wrap;gap:4px 12px;font-family:'Inter',sans-serif;font-size:14px;line-height:1.45;color:var(--ink);font-weight:400}
+  .subj ul li{position:relative;padding-left:0}
+  .subj ul li:not(:last-child)::after{content:"·";margin-left:12px;color:var(--ink-faint)}
 
-/* ── Card meta ── */
-.card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-.card-num { font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--ghost); }
-.tag { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; border: 1px solid; }
-.tag-phil  { color: #9898d4; border-color: #9898d4; }
-.tag-mat   { color: #c4a06a; border-color: #c4a06a; }
-.tag-bible { color: #6aaace; border-color: #6aaace; }
+  /* ───── RITUAL / RULES ───── */
+  .ritual{margin-top:80px;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;padding-top:60px;border-top:3px double var(--ink)}
+  .ritual h3{font-family:'Fraunces',serif;font-weight:400;font-size:40px;letter-spacing:-.01em;line-height:1;margin-bottom:28px;font-variation-settings:"opsz" 144}
+  .ritual h3 em{font-style:italic;color:var(--ocre);font-weight:300}
+  .ritual .kicker{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ocre);margin-bottom:18px}
 
-/* ── Typography ── */
-.slide-title { font-size: 21px; font-weight: 300; color: var(--white); line-height: 1.3; margin-bottom: .35rem; }
-.slide-sub { font-size: 12px; font-weight: 400; color: var(--ghost); margin-bottom: 1.5rem; line-height: 1.5; }
-.body { font-size: 14px; font-weight: 300; color: var(--beige2); line-height: 1.85; }
-.body + .body { margin-top: .85rem; }
-em { color: var(--beige); font-style: italic; font-weight: 400; }
+  .rhythm{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)}
+  .rhythm-row{display:grid;grid-template-columns:120px 1fr auto;gap:20px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+  .rhythm-row .day{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--ink);font-weight:400}
+  .rhythm-row .what{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink-soft);line-height:1.5}
+  .rhythm-row .mins{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--ocre);text-transform:uppercase;white-space:nowrap}
 
-/* ── Divider ── */
-.divider { height: 1px; background: var(--line); margin: 1.4rem 0; }
+  .lost{background:var(--paper-2);padding:32px;border:1px solid var(--rule)}
+  .lost .kicker{color:var(--berry)}
+  .lost .lost-row{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:14px 0;border-bottom:1px dotted var(--rule)}
+  .lost .lost-row:last-child{border-bottom:none}
+  .lost .lost-row .count{font-family:'Fraunces',serif;font-style:italic;font-size:26px;font-weight:400;color:var(--berry);line-height:1;min-width:70px}
+  .lost .lost-row .count small{display:block;font-size:11px;font-family:'JetBrains Mono',monospace;font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
+  .lost .lost-row .txt{font-size:14.5px;color:var(--ink);line-height:1.5}
+  .lost .lost-row .txt b{color:var(--berry);font-weight:500}
 
-/* ── Section label ── */
-.section-label { font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ghost); margin-bottom: .75rem; }
+  /* ───── MANTRA ───── */
+  .mantra{margin-top:80px;padding:60px 0;border-top:1px solid var(--rule);border-bottom:3px double var(--ink);text-align:center}
+  .mantra .kicker{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.25em;text-transform:uppercase;color:var(--ocre);margin-bottom:28px}
+  .mantra blockquote{
+    font-family:'Fraunces',serif;font-weight:300;font-size:clamp(44px,6vw,78px);
+    line-height:1;letter-spacing:-.02em;max-width:16ch;margin:0 auto;
+    font-variation-settings:"opsz" 144;
+  }
+  .mantra blockquote em{font-style:italic;color:var(--ocre);font-weight:300}
+  .mantra blockquote .gt{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--berry);display:inline-block;transform:translateY(-4px)}
+  .mantra cite{display:block;margin-top:28px;font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--ink-soft);font-weight:300;max-width:48ch;margin-left:auto;margin-right:auto;line-height:1.5}
 
-/* ── Highlight box ── */
-.hbox { background: var(--navy3); border-left: 2px solid var(--ghost); border-radius: 0 6px 6px 0; padding: 1rem 1.1rem; margin: 1.25rem 0; }
-.hbox .body { font-size: 13px; }
+  /* ───── FOOTER ───── */
+  footer.colo{margin-top:60px;display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);padding-top:24px;border-top:1px solid var(--rule)}
 
-/* ── Compare ── */
-.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 1.25rem 0; }
-@media (max-width: 400px) { .compare { grid-template-columns: 1fr; } }
-.col { background: var(--navy3); border: 1px solid var(--line); border-radius: 8px; padding: .9rem 1rem; }
-.col-title { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--ghost); margin-bottom: .5rem; }
-.col p { font-size: 13px; font-weight: 300; color: var(--beige2); line-height: 1.65; }
+  /* ───── PRINT ───── */
+  @media print{
+    @page{size:A4;margin:14mm 12mm}
+    html,body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body{background-image:none}
+    .page{max-width:none;padding:0}
+    .month-nav{display:none}
+    .month{display:block !important;page-break-before:always;padding:20px 0;border-bottom:none}
+    .month:first-of-type{page-break-before:avoid}
+    .hero{padding:10px 0 30px}
+    .hero h1{font-size:72px}
+    .weeks{grid-template-columns:repeat(2,1fr)}
+    .week{padding:18px 18px 22px;page-break-inside:avoid}
+    .week .wk-num b{font-size:32px}
+    .subj ul{font-size:13px}
+    .ritual,.mantra{page-break-before:always;padding-top:30px;margin-top:0}
+    .ritual{grid-template-columns:1.1fr 1fr;gap:32px}
+    .mantra blockquote{font-size:46px}
+    .month-head{margin-bottom:24px}
+    .month-num{font-size:90px}
+    .month-title h2{font-size:40px}
+  }
 
-/* ── Verse ── */
-.verse { border-left: 2px solid var(--line); padding: .65rem 0 .65rem 1rem; margin: 1.25rem 0; font-size: 13.5px; font-style: italic; font-weight: 300; color: var(--muted); line-height: 1.7; }
-.ref { display: block; font-style: normal; font-size: 9px; font-weight: 600; letter-spacing: .08em; color: var(--ghost); margin-top: 4px; text-transform: uppercase; }
-
-/* ── List ── */
-.items { list-style: none; margin: 1rem 0; }
-.items li { display: flex; gap: .9rem; padding: .8rem 0; border-bottom: 1px solid var(--line); font-size: 13.5px; font-weight: 300; color: var(--beige2); line-height: 1.7; }
-.items li:last-child { border-bottom: none; }
-.n { font-size: 9px; font-weight: 600; letter-spacing: .08em; color: var(--ghost); min-width: 20px; padding-top: 3px; flex-shrink: 0; text-transform: uppercase; }
-
-/* ── Dialectic ── */
-.dialectic { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 6px; align-items: center; margin: 1.25rem 0; }
-@media (max-width: 440px) { .dialectic { grid-template-columns: 1fr; } .dialectic-arrow { display: none; } }
-.d-box { background: var(--navy3); border: 1px solid var(--line); border-radius: 8px; padding: .85rem .9rem; }
-.d-box.hl { border-color: var(--beige3); }
-.d-label { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ghost); margin-bottom: 4px; }
-.d-box.hl .d-label { color: var(--beige3); }
-.d-text { font-size: 12px; font-weight: 300; color: var(--beige2); line-height: 1.55; }
-.dialectic-arrow { color: var(--ghost); font-size: 14px; text-align: center; }
-
-/* ── Tag items ── */
-.tag-items { display: flex; flex-direction: column; gap: 8px; margin: 1.1rem 0; }
-.tag-item { display: flex; align-items: flex-start; gap: 10px; padding: .75rem .9rem; background: var(--navy3); border: 1px solid var(--line); border-radius: 8px; }
-.tag-item-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ghost); flex-shrink: 0; margin-top: 6px; }
-.tag-item-text { font-size: 13px; font-weight: 300; color: var(--beige2); line-height: 1.6; }
-.tag-item-text strong { color: var(--beige); font-weight: 500; }
-
-/* ══════════════════════════════════════
-   QUESTION BLOCK — the key piece
-══════════════════════════════════════ */
-.question-block {
-  background: var(--q-bg);
-  border: 1px solid var(--q-line);
-  border-radius: 10px;
-  padding: 1.25rem 1.3rem;
-  margin-top: 1.6rem;
-  position: relative;
-}
-.question-block::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: 1.5rem;
-  width: 2rem; height: 2px;
-  background: var(--q-bg);
-}
-.q-label {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--ghost);
-  margin-bottom: .85rem;
-}
-.q-icon {
-  width: 16px; height: 16px;
-  border: 1px solid var(--ghost);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 9px; color: var(--ghost);
-  flex-shrink: 0;
-  font-style: italic;
-  font-weight: 500;
-}
-.question-text {
-  font-size: 15px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--beige);
-  line-height: 1.7;
-}
-
-/* ── Navigation ── */
-.nav { display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; gap: 8px; }
-.btn { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .05em; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 9px 18px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: border-color .15s, color .15s; }
-.btn:hover { border-color: var(--ghost); color: var(--beige); }
-.btn:active { transform: scale(.98); }
-.btn:disabled { opacity: .2; cursor: default; }
-.nav-c { font-size: 11px; font-weight: 400; color: var(--ghost); letter-spacing: .04em; }
-.kbd { text-align: center; font-size: 10px; color: var(--line); margin-top: .75rem; letter-spacing: .04em; }
+  @media (max-width:860px){
+    .page{padding:32px 22px 80px}
+    .hero{grid-template-columns:1fr;gap:32px}
+    .month-head{grid-template-columns:1fr;gap:12px}
+    .month-arc{text-align:left;max-width:none}
+    .weeks{grid-template-columns:1fr}
+    .ritual{grid-template-columns:1fr;gap:40px}
+    .month-nav{margin:32px -22px 0;padding:12px 22px;overflow-x:auto}
+  }
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="page">
 
-  <div class="site-header">
-    <div class="site-label">EBD · 2º Trimestre 2026</div>
-    <div class="site-title">A falácia do<br>Materialismo Histórico</div>
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <span class="vol">Vol. 1 · Edição pessoal</span>
+    <span>Planner de estudos<span class="dot"></span>ENEM 2026</span>
+    <span>Abril — Julho</span>
   </div>
 
-  <div class="progress"><div class="progress-fill" id="prog" style="width:11.11%"></div></div>
-  <div class="dot-nav" id="dots"></div>
-  <div id="sc">
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <div class="kicker">Plano de estudos · 16 semanas</div>
+      <h1>Um passo<br><em>por dia</em>,<br>rumo <span class="amp">ao</span><br>ENEM.</h1>
+    </div>
+    <div>
+      <p class="lede">Da <strong>Pré-História</strong> às <strong>Guerras Mundiais</strong>. De <strong>porcentagem</strong> a <strong>geometria analítica</strong>. Um cronograma respirável, feito pra durar meses — não pra queimar em uma semana.</p>
+      <div class="meta">
+        <div>Meses<b>04</b></div>
+        <div>Semanas<b>16</b></div>
+        <div>Matérias<b>09</b></div>
+        <div>Redações<b>08</b></div>
+      </div>
+    </div>
+  </header>
 
-    <!-- 1 -->
-    <div class="slide active">
-      <div class="card">
-        <div class="card-bar bar-phil"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">01 / 09</span><span class="tag tag-phil">Introdução</span></div>
-          <div class="slide-title">A falácia do materialismo histórico</div>
-          <div class="slide-sub">O que estudaremos nessa lição</div>
-          <div class="body">Antes de entrarmos no tema principal, precisamos entender dois conceitos-base:</div>
-          <div class="divider"></div>
-          <div class="section-label">O que é uma falácia?</div>
-          <div class="hbox">
-            <div class="body">É uma forma de raciocínio <em>enganoso</em> que tem a intenção de parecer válido. Parece lógico, mas esconde uma falha no argumento.</div>
-          </div>
-          <div class="divider"></div>
-          <div class="section-label">O que é filosofia?</div>
-          <div class="body">Filosofia é o estudo fundamental sobre a existência, o conhecimento, os valores, a razão, a mente e a linguagem.</div>
-          <div class="body">Ela busca compreender questões profundas com <em>raciocínio crítico, lógico e conceitual</em> — perguntando não só "o quê", mas "por quê" e "como sabemos".</div>
+  <!-- MONTH NAV -->
+  <nav class="month-nav">
+    <span class="label">Mês</span>
+    <button data-m="1" class="active">01 · Fundamentos</button>
+    <button data-m="2">02 · Brasil &amp; Iluminismo</button>
+    <button data-m="3">03 · Revoluções</button>
+    <button data-m="4">04 · Século XX</button>
+    <span class="spacer"></span>
+    <span class="date">Atualizado · 18 abr</span>
+  </nav>
 
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">Se a filosofia questiona tudo com a razão, o que acontece com a fé quando ela encontra um argumento que não consegue responder? A sua crença em Deus sobreviveria a uma falha que você não soubesse explicar?</div>
-          </div>
+  <!-- ══════════════ MÊS 1 ══════════════ -->
+  <section class="month active" id="m1">
+    <div class="month-head">
+      <div class="month-num">01</div>
+      <div class="month-title">
+        <span class="tag">Mês um · Fundamentos</span>
+        <h2>Raízes &amp; Régua</h2>
+        <div class="sub">Da Pré-História ao Renascimento — bases de cálculo, leitura e ecologia.</div>
+      </div>
+      <div class="month-arc"><b>Arco do mês</b>Construir base. Revisar no sábado. Descansar no domingo sem culpa.</div>
+    </div>
+
+    <div class="weeks">
+
+      <!-- S1 -->
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>01</b>semana</div>
+          <div class="wk-title">“Continuando de onde parei na Pré-História.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Revisão de Pré-História</li><li>Egito Antigo</li><li>Crescente Fértil</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Revisão básica</li><li>Frações</li><li>Multiplicação e divisão</li><li>Expressões numéricas</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Interpretação textual</li><li>Inferências</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Ecologia básica</li><li>Cadeia alimentar</li></ul></div>
+          <div class="subj c-rev"><div class="s-name">Sábado</div><ul><li>Revisão · 20 questões mistas</li></ul></div>
+        </div>
+      </article>
+
+      <!-- S2 -->
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>02</b>semana</div>
+          <div class="wk-title">“Antiguidade clássica e primeiras funções.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Grécia Antiga</li><li>Roma Antiga</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Porcentagem</li><li>Regra de três</li><li>Razão e proporção</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Soluções</li><li>Concentração</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>Globalização</li><li>Urbanização brasileira</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto completo</li></ul></div>
+        </div>
+      </article>
+
+      <!-- S3 -->
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>03</b>semana</div>
+          <div class="wk-title">“Medievo, médias e o primeiro movimento.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Idade Média</li><li>Feudalismo</li><li>Cruzadas</li><li>Igreja Medieval</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Função do 1º grau</li><li>Gráficos</li><li>Estatística e média</li></ul></div>
+          <div class="subj c-phys"><div class="s-name">Física</div><ul><li>Cinemática</li><li>Movimento uniforme</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Genética básica</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Gêneros textuais</li></ul></div>
+        </div>
+      </article>
+
+      <!-- S4 -->
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>04</b>semana</div>
+          <div class="wk-title">“A Europa se abre ao mundo.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Renascimento Cultural</li><li>Reforma Protestante</li><li>Grandes Navegações</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Geometria plana</li><li>Áreas</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Estequiometria básica</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>Climas do Brasil</li><li>Biomas</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto + repertórios</li></ul></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ MÊS 2 ══════════════ -->
+  <section class="month" id="m2">
+    <div class="month-head">
+      <div class="month-num">02</div>
+      <div class="month-title">
+        <span class="tag">Mês dois · Brasil &amp; Iluminismo</span>
+        <h2>Mundo Novo, ideias velhas.</h2>
+        <div class="sub">Colonização, Absolutismo e Iluminismo — funções de 2º grau, termoquímica e citologia.</div>
+      </div>
+      <div class="month-arc"><b>Arco do mês</b>Sair do eurocêntrico: colônia, resistência indígena e africana. Matemática ganha curvas.</div>
+    </div>
+
+    <div class="weeks">
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>05</b>semana</div>
+          <div class="wk-title">“Brasil Colônia &amp; os primeiros ciclos.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Brasil Colônia</li><li>Ciclo do açúcar</li><li>Escravidão</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Função do 2º grau</li><li>Vértice e raízes</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Variação linguística</li><li>Norma culta</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Citologia</li><li>Organelas</li></ul></div>
+          <div class="subj c-rev"><div class="s-name">Sábado</div><ul><li>20 questões mistas</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>06</b>semana</div>
+          <div class="wk-title">“Absolutismo, mercantilismo, potências.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Absolutismo</li><li>Mercantilismo</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Progressão aritmética</li><li>PA</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Termoquímica</li><li>Entalpia</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>Geopolítica</li><li>Blocos econômicos</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto completo</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>07</b>semana</div>
+          <div class="wk-title">“Luzes: razão contra privilégio.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Iluminismo</li><li>Déspotas esclarecidos</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Progressão geométrica</li><li>PG</li></ul></div>
+          <div class="subj c-phys"><div class="s-name">Física</div><ul><li>Cinemática vetorial</li><li>MRUV</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Genética mendeliana</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Literatura · Quinhentismo e Barroco</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>08</b>semana</div>
+          <div class="wk-title">“Ouro, Inconfidência e simulado leve.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Ciclo do ouro</li><li>Inconfidência Mineira</li><li>Conjuração Baiana</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Geometria espacial</li><li>Volumes</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Cinética química</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>População brasileira</li><li>Migrações</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto + repertórios</li></ul></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ MÊS 3 ══════════════ -->
+  <section class="month" id="m3">
+    <div class="month-head">
+      <div class="month-num">03</div>
+      <div class="month-title">
+        <span class="tag">Mês três · Revoluções</span>
+        <h2>O mundo vira do avesso.</h2>
+        <div class="sub">Independências, Revolução Industrial e Império — trigonometria, eletricidade e evolução.</div>
+      </div>
+      <div class="month-arc"><b>Arco do mês</b>Conectar causa e efeito. Redação ganha repertório histórico forte.</div>
+    </div>
+
+    <div class="weeks">
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>09</b>semana</div>
+          <div class="wk-title">“Independência dos EUA &amp; a França acende.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Independência dos EUA</li><li>Revolução Francesa</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Trigonometria no triângulo</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Figuras de linguagem</li><li>Literatura · Romantismo</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Evolução</li><li>Seleção natural</li></ul></div>
+          <div class="subj c-rev"><div class="s-name">Sábado</div><ul><li>20 questões mistas</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>10</b>semana</div>
+          <div class="wk-title">“Fumaça, engrenagem, operário.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Revolução Industrial</li><li>Liberalismo x Socialismo</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Ciclo trigonométrico</li><li>Seno e cosseno</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Equilíbrio químico</li><li>Le Chatelier</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>Indústria no Brasil</li><li>Desigualdade regional</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto completo</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>11</b>semana</div>
+          <div class="wk-title">“Brasil Império &amp; as correntes.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Independência do Brasil</li><li>Primeiro e Segundo Reinado</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Análise combinatória</li></ul></div>
+          <div class="subj c-phys"><div class="s-name">Física</div><ul><li>Eletricidade</li><li>Lei de Ohm</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Fisiologia humana · sistemas</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Literatura · Realismo</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>12</b>semana</div>
+          <div class="wk-title">“Imperialismo &amp; o mapa partido.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Imperialismo</li><li>Partilha da África</li><li>Abolição no Brasil</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Probabilidade</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Química orgânica · introdução</li><li>Cadeias carbônicas</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>África e Oriente Médio</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto + repertórios</li></ul></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ MÊS 4 ══════════════ -->
+  <section class="month" id="m4">
+    <div class="month-head">
+      <div class="month-num">04</div>
+      <div class="month-title">
+        <span class="tag">Mês quatro · Século XX</span>
+        <h2>Guerras, golpes, gente.</h2>
+        <div class="sub">Repúblicas, Guerras Mundiais e redemocratização — fechamento em geometria analítica e orgânica.</div>
+      </div>
+      <div class="month-arc"><b>Arco do mês</b>Amarrar tudo. Simulados curtos. Foco em repertório para a redação.</div>
+    </div>
+
+    <div class="weeks">
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>13</b>semana</div>
+          <div class="wk-title">“República Velha &amp; a Grande Guerra.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>República Velha</li><li>Primeira Guerra Mundial</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Matrizes</li><li>Determinantes</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Literatura · Modernismo brasileiro</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Ecossistemas</li><li>Sustentabilidade</li></ul></div>
+          <div class="subj c-rev"><div class="s-name">Sábado</div><ul><li>Mini-simulado · 25 questões</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>14</b>semana</div>
+          <div class="wk-title">“Entreguerras, Vargas &amp; 1945.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Crise de 1929</li><li>Nazifascismo</li><li>Era Vargas</li><li>Segunda Guerra Mundial</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Sistemas lineares</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Funções orgânicas</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>Globalização · fases</li><li>Agronegócio brasileiro</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto completo</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>15</b>semana</div>
+          <div class="wk-title">“Guerra Fria &amp; Ditadura no Brasil.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Guerra Fria</li><li>Ditadura Militar</li><li>Redemocratização</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Geometria analítica</li><li>Reta e circunferência</li></ul></div>
+          <div class="subj c-phys"><div class="s-name">Física</div><ul><li>Ondulatória</li><li>Óptica</li></ul></div>
+          <div class="subj c-bio"><div class="s-name">Biologia</div><ul><li>Biotecnologia</li><li>DNA, clonagem, transgênicos</li></ul></div>
+          <div class="subj c-lang"><div class="s-name">Linguagens</div><ul><li>Literatura · contemporânea</li></ul></div>
+        </div>
+      </article>
+
+      <article class="week">
+        <div class="wk-head">
+          <div class="wk-num"><b>16</b>semana</div>
+          <div class="wk-title">“Século XXI — fechamento e repertório.”</div>
+        </div>
+        <div class="subjects">
+          <div class="subj c-hist"><div class="s-name">História</div><ul><li>Nova República</li><li>Brasil no século XXI</li><li>Geopolítica atual</li></ul></div>
+          <div class="subj c-math"><div class="s-name">Matemática</div><ul><li>Revisão geral</li><li>Questões ENEM anteriores</li></ul></div>
+          <div class="subj c-chem"><div class="s-name">Química</div><ul><li>Química ambiental</li><li>Poluição e reciclagem</li></ul></div>
+          <div class="subj c-geo"><div class="s-name">Geografia</div><ul><li>Meio ambiente</li><li>Questões urbanas</li></ul></div>
+          <div class="subj c-red"><div class="s-name">Redação</div><ul><li>1 texto + banco de repertórios</li></ul></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- RITUAL -->
+  <section class="ritual">
+    <div>
+      <div class="kicker">Como revisar · toda semana</div>
+      <h3>O <em>ritmo</em> que<br>sustenta o mês.</h3>
+      <div class="rhythm">
+        <div class="rhythm-row">
+          <div class="day">Segunda</div>
+          <div class="what">Conteúdo novo. A matéria da semana, devagar.</div>
+          <div class="mins">— · 60 min</div>
+        </div>
+        <div class="rhythm-row">
+          <div class="day">Terça</div>
+          <div class="what">Conteúdo novo + exercícios soltos do tópico de ontem.</div>
+          <div class="mins">— · 60 min</div>
+        </div>
+        <div class="rhythm-row">
+          <div class="day">Quarta</div>
+          <div class="what">Revisão rápida de segunda e terça. Sem conteúdo novo.</div>
+          <div class="mins">— · 20 min</div>
+        </div>
+        <div class="rhythm-row">
+          <div class="day">Quinta</div>
+          <div class="what">Nova matéria da semana. Linguagens ou ciências.</div>
+          <div class="mins">— · 60 min</div>
+        </div>
+        <div class="rhythm-row">
+          <div class="day">Sexta</div>
+          <div class="what">Redação OU leitura crítica. Escreve-se mesmo com preguiça.</div>
+          <div class="mins">— · 50 min</div>
+        </div>
+        <div class="rhythm-row">
+          <div class="day">Sábado</div>
+          <div class="what">Questões mistas. Corrigir com calma. Anotar erros recorrentes.</div>
+          <div class="mins">— · 90 min</div>
+        </div>
+        <div class="rhythm-row">
+          <div class="day">Domingo</div>
+          <div class="what">Revisão leve — ou descanso de verdade.</div>
+          <div class="mins">livre</div>
         </div>
       </div>
     </div>
 
-    <!-- 2 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-phil"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">02 / 09</span><span class="tag tag-phil">Filosofia</span></div>
-          <div class="slide-title">Os principais aspectos da filosofia</div>
-          <div class="slide-sub">As áreas que compõem o pensamento filosófico</div>
-          <ul class="items">
-            <li><span class="n">Meta-<br>física</span><div><em>"Meta" = além.</em> Investiga a natureza fundamental da realidade, explorando conceitos como ser, existência, tempo, espaço e causalidade. Pergunta: <em>o que existe de fato?</em></div></li>
-            <li><span class="n">Episte-<br>mologia</span><div>Dedica-se ao estudo do <em>conhecimento.</em> Aborda: o que é conhecimento? Como adquirimos? Quais são seus limites? Como sabemos que algo é verdade?</div></li>
-            <li><span class="n">Ética</span><div>Estuda o que é certo, errado, justo e injusto. Pergunta: como devemos agir e por quê?</div></li>
-            <li><span class="n">Lógica</span><div>Analisa a estrutura dos argumentos válidos. Base do pensamento racional e científico.</div></li>
-            <li><span class="n">Estética</span><div>Reflete sobre a natureza do belo, da arte e da experiência sensível.</div></li>
-          </ul>
-          <div class="hbox">
-            <div class="body">O Materialismo Histórico se apoia em escolhas filosóficas muito específicas — especialmente sobre o que é <em>real</em> e de onde vem o <em>conhecimento.</em></div>
-          </div>
-
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">A epistemologia pergunta: como você sabe que algo é verdade? Como você sabe que Deus existe — não o que te ensinaram, não o que sente, mas como você <em>sabe?</em> Existe diferença entre fé e conhecimento, ou uma é uma forma da outra?</div>
-          </div>
-        </div>
+    <aside class="lost">
+      <div class="kicker">Se perder algum dia</div>
+      <div class="lost-row">
+        <div class="count">1<small>dia</small></div>
+        <div class="txt"><b>Continue normal.</b> Recupere só o principal em 30 min extras no dia seguinte. Não tente virar a noite.</div>
       </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-mat"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">03 / 09</span><span class="tag tag-mat">Materialismo Histórico</span></div>
-          <div class="slide-title">O que é o Materialismo Histórico?</div>
-          <div class="slide-sub">A teoria de Marx e Engels sobre a história humana</div>
-          <div class="body">É uma teoria que busca analisar a história humana através de uma perspectiva materialista. Foca nas <em>condições materiais de existência</em> — especialmente nas relações de produção — como os principais motores das mudanças sociais.</div>
-          <div class="divider"></div>
-          <div class="section-label">Contexto de surgimento</div>
-          <div class="body">A teoria surgiu no século XIX. A Revolução Industrial havia impulsionado o capitalismo, gerando crescimento econômico, mas também <em>aprofundando as desigualdades</em> e criando uma nova classe de trabalhadores explorados — o proletariado.</div>
-          <div class="divider"></div>
-          <div class="section-label">A ideia central</div>
-          <ul class="items">
-            <li><span class="n">→</span><div>O <em>trabalho</em> é o que diferencia os homens dos animais e dá base às relações sociais</div></li>
-            <li><span class="n">→</span><div>Os <em>meios de produção</em> (fábricas, máquinas, terrenos) determinam como a sociedade se organiza</div></li>
-            <li><span class="n">→</span><div>As mudanças sociais são fruto da conquista material e da modificação nos <em>modos de produção</em></div></li>
-            <li><span class="n">→</span><div>As relações entre indivíduos são entendidas pela <em>troca</em> — o que cada um pode ofertar como força produtiva</div></li>
-          </ul>
-
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">Se as condições materiais moldam o pensamento humano, o quanto da sua fé foi formado pelo país onde nasceu, pela família que teve, pela classe social em que cresceu — e não por uma escolha genuinamente sua?</div>
-          </div>
-        </div>
+      <div class="lost-row">
+        <div class="count">2<small>dias</small></div>
+        <div class="txt"><b>Corte os secundários.</b> Priorize Matemática, Redação e Interpretação de texto. O resto volta na próxima semana.</div>
       </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-mat"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">04 / 09</span><span class="tag tag-mat">Marxismo</span></div>
-          <div class="slide-title">A sociedade segundo o marxismo</div>
-          <div class="slide-sub">Como Marx e Engels enxergavam as classes sociais</div>
-          <div class="compare">
-            <div class="col"><div class="col-title">Burguesia</div><p>Detentores dos meios de produção — fábricas, máquinas e capital. Querem <em>conservar o poder</em> e obter mais lucro.</p></div>
-            <div class="col"><div class="col-title">Proletariado</div><p>Recebem salário por sua força de trabalho. Precisam <em>vender a mão de obra</em> para sobreviver.</p></div>
-          </div>
-          <div class="body">Os burgueses exploram ao máximo os empregados — pagando baixos salários e oferecendo péssimas condições de trabalho. Insatisfeito, o proletariado se revolta e luta contra os burgueses.</div>
-          <div class="hbox" style="margin-top:1.25rem">
-            <div class="body"><em>O que move a história de uma sociedade são as lutas entre as diferentes classes sociais.</em> Essa luta levaria, segundo Marx, ao fim da divisão de classes e a uma transformação revolucionária da ordem social.</div>
-          </div>
-
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">Se a Igreja historicamente esteve aliada ao poder econômico dominante — abençoando reis, legitimando guerras, sendo financiada por latifundiários — ela pregava o Evangelho ou servia aos interesses de uma classe? E hoje, isso ainda acontece?</div>
-          </div>
-        </div>
+      <div class="lost-row">
+        <div class="count">1<small>semana</small></div>
+        <div class="txt"><b>Faça um mini-simulado</b> para diagnosticar onde você está. Recomece sem culpa, na semana seguinte — não tente compensar tudo.</div>
       </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-mat"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">05 / 09</span><span class="tag tag-mat">Materialismo Dialético</span></div>
-          <div class="slide-title">Materialismo Dialético</div>
-          <div class="slide-sub">O movimento entre opostos como motor da mudança social</div>
-          <div class="body">Marx usa o conceito de <em>dialética</em> — movimento entre opostos — para explicar as mudanças sociais. As mudanças surgem necessariamente do <em>embate entre forças sociais distintas.</em></div>
-          <div class="divider"></div>
-          <div class="section-label">Tese · Antítese · Síntese</div>
-          <div class="dialectic">
-            <div class="d-box">
-              <div class="d-label">Tese</div>
-              <div class="d-text">Afirmação inicial. Situação existente. Ex: o feudalismo como sistema dominante.</div>
-            </div>
-            <div class="dialectic-arrow">→</div>
-            <div class="d-box">
-              <div class="d-label">Antítese</div>
-              <div class="d-text">A contradição. Força oposta em conflito com a tese. Ex: o capitalismo emergente.</div>
-            </div>
-            <div class="dialectic-arrow">→</div>
-            <div class="d-box hl">
-              <div class="d-label">Síntese</div>
-              <div class="d-text">Resultado do conflito. Nova realidade que supera os dois. Ex: o capitalismo industrial.</div>
-            </div>
-          </div>
-          <div class="hbox">
-            <div class="body">Para Marx, toda a história humana segue esse movimento. <em>O conflito não é acidental — é o mecanismo da história.</em></div>
-          </div>
-
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">A própria teologia cristã foi moldada por conflitos — a Reforma, as perseguições, os concílios. Se o que a Igreja acredita hoje foi formado por embates históricos, como você distingue o que é <em>revelação de Deus</em> do que é simplesmente a síntese vencedora de um conflito humano?</div>
-          </div>
-        </div>
+      <div class="lost-row">
+        <div class="count">—<small>sempre</small></div>
+        <div class="txt"><b>Nunca dobre a carga por culpa.</b> Volte com consistência, não com castigo.</div>
       </div>
-    </div>
+    </aside>
+  </section>
 
-    <!-- 6 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-bible"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">06 / 09</span><span class="tag tag-bible">EBD · Lição 2</span></div>
-          <div class="slide-title">A luta de classes na visão marxista</div>
-          <div class="slide-sub">E o que a Bíblia tem a dizer sobre isso</div>
-          <div class="body">Para o marxismo, a luta entre opressores e oprimidos é o <em>motor da história.</em> Toda injustiça teria origem nas estruturas econômicas — e a solução estaria em mudar essas estruturas.</div>
-          <div class="compare" style="margin-top:1.25rem">
-            <div class="col"><div class="col-title">Marxismo</div><p>A luta é material: burguesia vs. proletariado. Mude as estruturas e o problema estará resolvido.</p></div>
-            <div class="col"><div class="col-title">Bíblia</div><p>A nossa luta é contra os principados, contra as potestades... nos lugares celestiais. (Ef 6.12)</p></div>
-          </div>
-          <div class="verse">"A raiz de todos os males é o amor ao dinheiro" — mas a raiz mais profunda ainda é o pecado no coração humano.<span class="ref">1 Timóteo 6.10 · 1 João 5.17</span></div>
-          <div class="hbox">
-            <div class="body">O verdadeiro problema do mundo não é econômico — é espiritual. <em>Sem novo nascimento, não há nova sociedade.</em> A transformação começa no coração.</div>
-          </div>
+  <!-- MANTRA -->
+  <section class="mantra">
+    <div class="kicker">Regra importante</div>
+    <blockquote><em>Constância</em> <span class="gt">›</span> perfeição.</blockquote>
+    <cite>Estudar uma hora por dia, durante meses, vale mais do que tentar oito horas e desistir na sexta.</cite>
+  </section>
 
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">Se o problema é espiritual e não estrutural, por que Deus permite que crianças morram de fome em sistemas econômicos injustos antes que possam ser "transformadas pelo Evangelho"? A transformação do coração é suficiente quando o corpo está com fome?</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-bible"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">07 / 09</span><span class="tag tag-bible">EBD · Lição 2</span></div>
-          <div class="slide-title">Materialismo Dialético e a providência de Deus</div>
-          <div class="slide-sub">Os pontos-chave e a resposta cristã</div>
-          <div class="section-label">O que o materialismo dialético afirma</div>
-          <ul class="items">
-            <li><span class="n">①</span><div>As mudanças sociais têm origem em <em>contradições internas</em> nos sistemas materiais</div></li>
-            <li><span class="n">②</span><div>Rejeita qualquer <em>intervenção divina</em> ou plano superior na direção da história</div></li>
-            <li><span class="n">③</span><div>Substitui princípios morais imutáveis por <em>relativismo histórico</em> — qualquer ação pode ser justificada em nome da "evolução social"</div></li>
-          </ul>
-          <div class="divider"></div>
-          <div class="section-label">A perspectiva cristã</div>
-          <ul class="items">
-            <li><span class="n">①</span><div>A história é dirigida por um <em>Deus soberano</em> que estabelece limites morais claros</div></li>
-            <li><span class="n">②</span><div>Deus julga as ações humanas com <em>justiça</em> (Sl 75.6,7)</div></li>
-            <li><span class="n">③</span><div>A doutrina bíblica da providência afirma que Deus <em>dirige a história</em> e sustenta todas as coisas</div></li>
-          </ul>
-          <div class="verse">"Em Ele todas as coisas subsistem." / "Sustentando todas as coisas pela palavra do seu poder."<span class="ref">Colossenses 1.17 · Hebreus 1.3</span></div>
-
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">Se Deus dirige soberanamente a história, Ele também dirigiu o Holocausto, a escravidão e o genocídio de povos indígenas? Onde está a linha entre <em>providência divina</em> e cumplicidade? E o que isso diz sobre o Deus em quem você crê?</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-bible"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">08 / 09</span><span class="tag tag-bible">EBD · Lição 2</span></div>
-          <div class="slide-title">"A religião é o ópio do povo"</div>
-          <div class="slide-sub">A base ateísta declarada do Materialismo Histórico</div>
-          <div class="body">O Materialismo Histórico se fundamenta no ateísmo. Marx afirmou que a religião é uma ilusão criada para manter as classes oprimidas conformadas com sua situação.</div>
-          <div class="tag-items">
-            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Religião como ilusão</strong> — criada para subjugar e satisfazer os pobres, impedindo-os de lutar por seus direitos</div></div>
-            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Deus como invenção humana</strong> — a divindade é interpretada como um constructo cultural e psicológico</div></div>
-            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Fé como obstáculo</strong> — a fé cristã é considerada um empecilho ao progresso e à transformação social</div></div>
-            <div class="tag-item"><div class="tag-item-dot"></div><div class="tag-item-text"><strong>Hostilidade à Bíblia</strong> — rejeita o papel de Deus como Criador e Senhor da história</div></div>
-          </div>
-          <div class="verse">"Lembrai-vos das coisas passadas... porque eu sou Deus, e não há outro Deus, e nada há semelhante a mim."<span class="ref">Isaías 46.9,10</span></div>
-          <div class="hbox">
-            <div class="body">Onde o marxismo governou, igrejas foram fechadas, pastores presos, a Bíblia proibida. <em>Nossa esperança não está em revoluções humanas, mas na cruz de Cristo.</em></div>
-          </div>
-
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">Marx disse que a religião consola os oprimidos para que suportem a injustiça. Você já usou a frase "Deus tem um propósito" para aceitar uma situação injusta que poderia ter sido combatida? Em que momento a fé vira resignação — e resignação vira cumplicidade com o mal?</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 9 -->
-    <div class="slide">
-      <div class="card">
-        <div class="card-bar bar-bible"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-num">09 / 09</span><span class="tag tag-bible">EBD · Conclusão</span></div>
-          <div class="slide-title">A utopia que falhou e a esperança que permanece</div>
-          <div class="slide-sub">Provérbios 30.7–9 · 1 Timóteo 6.6–9</div>
-          <div class="body">O Materialismo Histórico prometeu uma sociedade sem classes, sem desigualdade, sem injustiça. O que aconteceu, na prática, foram regimes autoritários, concentração de poder e nova opressão.</div>
-          <div class="hbox" style="margin:1.25rem 0">
-            <div class="body">O problema central: o marxismo ignorou o <em>pecado no coração humano.</em> Sem lidar com a natureza corrompida, qualquer sistema — por mais bem planejado — reproduz o ciclo de poder e opressão.</div>
-          </div>
-          <div class="verse">"Não me dês nem a pobreza nem a riqueza; mantém-me do pão da minha porção acostumada."<span class="ref">Provérbios 30.8</span></div>
-          <div class="verse">"É grande ganho a piedade com contentamento. Porque nada trouxemos para este mundo e nada podemos levar dele."<span class="ref">1 Timóteo 6.6,7</span></div>
-          <div class="divider"></div>
-          <div class="section-label">A resposta bíblica</div>
-          <ul class="items">
-            <li><span class="n">→</span><div>O amor ao próximo e a solidariedade nascida da <em>regeneração</em> — não da revolução violenta (Mt 5.44)</div></li>
-            <li><span class="n">→</span><div>A Igreja como sal da terra e luz do mundo — maior agente de transformação genuína (Mt 5.13,14)</div></li>
-            <li><span class="n">→</span><div>O poder da Igreja está na <em>cruz de Cristo</em>, que salva, transforma e liberta com esperança duradoura</div></li>
-          </ul>
-
-          <div class="question-block">
-            <div class="q-label"><div class="q-icon">?</div>Para refletir</div>
-            <div class="question-text">Se o marxismo falhou por ignorar o pecado humano, o que impede a Igreja — que conhece o pecado — de falhar pelo mesmo motivo? Quando foi a última vez que você viu a fé cristã transformar genuinamente uma estrutura injusta, e não apenas consolar quem sofre dentro dela?</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="nav">
-    <button class="btn" id="bp" disabled onclick="go(-1)">
-      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8 2L3 6.5L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Anterior
-    </button>
-    <span class="nav-c" id="nc">1 / 9</span>
-    <button class="btn" id="bn" onclick="go(1)">
-      Próximo
-      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M5 2L10 6.5L5 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
-  <p class="kbd">← → teclado · swipe mobile</p>
+  <footer class="colo">
+    <span>Plano ENEM · edição pessoal</span>
+    <span>Impressão · Cmd/Ctrl + P</span>
+    <span>— feito com paciência —</span>
+  </footer>
 
 </div>
+
 <script>
-var cur=0,sl=document.querySelectorAll('.slide'),n=sl.length,de=document.getElementById('dots');
-for(var i=0;i<n;i++){var d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label','Card '+(i+1));(function(x){d.onclick=function(){go2(x)};})(i);de.appendChild(d);}
-function go2(i){
-  sl[cur].classList.remove('active');de.children[cur].classList.remove('active');
-  cur=i;
-  sl[cur].classList.add('active');de.children[cur].classList.add('active');
-  document.getElementById('nc').textContent=(cur+1)+' / '+n;
-  document.getElementById('bp').disabled=cur===0;
-  document.getElementById('bn').disabled=cur===n-1;
-  document.getElementById('prog').style.width=Math.round(((cur+1)/n)*100)+'%';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function go(d){go2(Math.min(Math.max(cur+d,0),n-1));}
-document.addEventListener('keydown',function(e){
-  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
-  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
-});
-var tx=0;
-document.addEventListener('touchstart',function(e){tx=e.changedTouches[0].screenX;},{passive:true});
-document.addEventListener('touchend',function(e){var dx=e.changedTouches[0].screenX-tx;if(Math.abs(dx)>50)go(dx<0?1:-1);},{passive:true});
+  // Month navigation
+  const buttons = document.querySelectorAll('.month-nav button');
+  const months = document.querySelectorAll('.month');
+  const KEY = 'enem-active-month';
+  const saved = localStorage.getItem(KEY) || '1';
+  setMonth(saved);
+  buttons.forEach(b => b.addEventListener('click', () => {
+    setMonth(b.dataset.m);
+    localStorage.setItem(KEY, b.dataset.m);
+  }));
+  function setMonth(m){
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.m === m));
+    months.forEach(sec => sec.classList.toggle('active', sec.id === 'm' + m));
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  // For print, temporarily show everything — handled by CSS
 </script>
 </body>
 </html>
